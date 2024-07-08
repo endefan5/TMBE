@@ -39,6 +39,17 @@ class Usuario:
         cur.close()
         return usuarios
 
+    def serialize(self):
+        return {
+            'id': self.id,
+            'usuario': self.usuario,
+            'clave': self.clave,
+            'nombre': self.nombre,
+            'apellido': self.apellido,
+            'email': self.email,
+            'telefono': self.telefono
+        }
+
 
 # con = connect(host="localhost", port=3306, user="root",
 #               password="", database="proycodoacodo")

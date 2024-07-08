@@ -24,3 +24,8 @@ def crear_usuario():
                             apellido, email, telefono)
     nuevo_usuario.guardar()
     return jsonify({"message": "Usuario creado satisfactoriamente"}), 201
+
+
+def traer_usuarios():
+    usuarios = Usuario.traer_todos()
+    return jsonify([usuario.serialize() for usuario in usuarios])
