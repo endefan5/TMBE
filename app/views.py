@@ -29,3 +29,36 @@ def crear_usuario():
 def traer_usuarios():
     usuarios = Usuario.traer_todos()
     return jsonify([usuario.serialize() for usuario in usuarios])
+
+
+def traer_usuario(id):
+    usuario = Usuario.traer_uno(id)
+    if not usuario:
+        return jsonify({'message': 'Usuario no encontrado'}), 404
+
+    return jsonify(usuario.serialize())
+
+
+def actualizar_usuario(id):
+    usuario = Usuario(Usuario.traer_uno(id))
+    if not usuario:
+        return jsonify({'message': 'Usuario no encontrado'}), 404
+
+    data = request.json
+    usuario.usuario = data['usuario']
+    usuario.clave = data['clave']
+    usuario.nombre = data['nombre']
+    usuario.apellido = data['apellido']
+    usuario.email = data['email']
+    usuario.telefono = data['telefono']
+    usuario.guardar()
+    return jsonify({'message': 'Usuario actualizado.'})
+
+
+def eliminar_usuario(id):
+    us = Usuario.traer_uno(id)
+    if not us:
+        return jsonify({'message': 'Usuario no encontrado'}), 404
+
+    Usuario.eliminar()
+    return jsonify({'message': 'Usuario satisfactoriamente eliminaado.'})

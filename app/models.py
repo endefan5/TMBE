@@ -39,6 +39,25 @@ class Usuario:
         cur.close()
         return usuarios
 
+    @staticmethod
+    def traer_uno(id):
+        db = get_db_connection()
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM usuario WHERE id=%s", (id,))
+        row = cursor.fetchone()
+        cursor.close()
+        if row:
+            return Usuario(id=row[0], usuario=row[1], clave=row[2], nombre=row[3], apellido=row[4], email=row[5], telefono=row[6])
+
+        return None
+
+    def eliminar(self):
+        db = get_db_connection()
+        cursor = db.cursor()
+        cursor.execute("DELETE FROM usuario WHERE id=%s", (self.id,))
+        db.commit()
+        cursor.close()
+
     def serialize(self):
         return {
             'id': self.id,
