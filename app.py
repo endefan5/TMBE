@@ -1,14 +1,9 @@
 from flask import Flask, session
-from flask_session import Session
 from flask_cors import CORS
 from app.database import iniciar_app
 from app.views import *
 
 app = Flask(__name__)
-app.secret_key = 'proycodoacodo'  # Asegúrate de definir una clave secreta segura
-app.config['SESSION_TYPE'] = 'filesystem'  # Puedes elegir otro tipo según tus necesidades
-
-Session(app)
 iniciar_app(app)
 CORS(app)
 

@@ -1,5 +1,4 @@
-from flask import request, jsonify, session, abort
-
+from flask import Flask, request, jsonify, session
 from app.models import Reserva
 from app.models import Usuario
 
@@ -31,7 +30,6 @@ def actualizar_usuario(id):
     usuario = Usuario.traer_uno(id)
     if not usuario:
         return jsonify({'message': 'Usuario no encontrado'}), 404
-
     data = request.json
     usuario.usuario = data['usuario']
     usuario.clave = data['clave']
@@ -46,77 +44,60 @@ def eliminar_usuario(id):
     usuario = Usuario.traer_uno(id)
     if not usuario:
         return jsonify({'message': 'Usuario no encontrado'}), 404
-
     usuario.eliminar()
     return jsonify({'message': 'Usuario eliminado satisfactoriamente.'})
 
-def login(emailUsuario, clave):
-    
-    if chequearInicioDeSesion():
-        return jsonify({'message': 'Ya se encuentra logueado'}), 401
-    else:
-        usuario = Usuario.buscar_por_email(emailUsuario)
-        if usuario and usuario.verificar_contrasena(clave):
-            session['idUsuario'] = emailUsuario
-            session.modified = True  # Asegura que la sesión se almacene correctamente
-            message = f'Login exitoso. idUsuario: {session.get("idUsuario")}'
-            return jsonify({'message': message}), 200
-        else:
-            message = f'Credenciales inválidas. idUsuario: {session.get("idUsuario")}'
-            return jsonify({'message': message}), 200
-            #return jsonify({'message': 'Credenciales inválidas'}), 401
 
+def login(emailUsuario, clave):
+    usuario = Usuario.buscar_por_email(emailUsuario)
+    if usuario and usuario.verificar_contrasena(clave):
+        session['idUsuario'] = usuario.id
+        return jsonify({'message': 'Login exitoso'}), 200
+    else:
+        return jsonify({'message': 'Credenciales inválidas'}), 401
 
 def logout():
     session.clear()
-    message = f'Credenciales inválidas. idUsuario: {session.get("idUsuario")}'
-    return jsonify({'message': message}), 200
-    #return jsonify({'message': 'Logout exitoso'}), 200
+    return jsonify({'message': 'Logout exitoso'}), 200
+
 
 def crear_reserva():
-    if 'idUsuario' in session:
-        cantidadPersonas = request.form.get("cantidadPersonas")
-        fecha = request.form.get("fecha")
-        ubicacion = request.form.get("ubicacion")
-        ocasionEspecial = request.form.get("ocasionEspecial")
-        ocasionEspecialCual = request.form.get("ocasionEspecialCual")
-        idUsuario = session['idUsuario']  # Usar el idUsuario almacenado en la sesión
+    cantidadPersonas = request.form.get("cantidadPersonas")
+    fecha = request.form.get("fecha")
+    ubicacion = request.form.get("ubicacion")
+    ocasionEspecial = request.form.get("ocasionEspecial")
+    ocasionEspecialCual = request.form.get("ocasionEspecialCual")
+    idUsuario = request.form.get("idUsuario")  # Este valor deberá manejarse adecuadamente al implementar el sistema de login
 
-        nueva_reserva = Reserva(
-            cantidadPersonas=cantidadPersonas,
-            fecha=fecha,
-            ubicacion=ubicacion,
-            ocasionEspecial=ocasionEspecial,
-            ocasionEspecialCual=ocasionEspecialCual,
-            idUsuario=idUsuario
-        )
-        nueva_reserva.guardar()
+    # Validación de los datos, asegurándote de que los tipos de datos sean correctos y que los valores estén dentro de los rangos esperados
 
-        return jsonify({"message": "Reserva creada satisfactoriamente"}), 201
-    else:
-        return jsonify({'message': 'Debes iniciar sesión para realizar esta acción'}), 401
+    nueva_reserva = Reserva(
+        cantidadPersonas=cantidadPersonas,
+        fecha=fecha,
+        ubicacion=ubicacion,
+        ocasionEspecial=ocasionEspecial,
+        ocasionEspecialCual=ocasionEspecialCual,
+        idUsuario=idUsuario
+    )
+    nueva_reserva.guardar()
+
+    return jsonify({"message": "Reserva creada satisfactoriamente"}), 201
 
 
 def traer_reservas():
-    if chequearInicioDeSesion:
-        idUsuario = session.get('idUsuario')  # Obtenemos el idUsuario de la sesión
-        reservas = Reserva.traer_todos_por_usuario(idUsuario)
-        return jsonify([reserva.serialize() for reserva in reservas]), 200
+    reservas = Reserva.traer_todos()
+    return jsonify([reserva.serialize() for reserva in reservas]), 200
 
 def traer_reserva(idReserva):
-    if chequearInicioDeSesion:
-        idUsuario = session.get('idUsuario')  # Obtenemos el idUsuario de la sesión
-        reserva = Reserva.traer_uno_por_usuario(idReserva, idUsuario)
-        if not reserva:
-            return jsonify({'message': 'Reserva no encontrada'}), 404
-        return jsonify(reserva.serialize())
+    reserva = Reserva.traer_uno(idReserva)
+    if not reserva:
+        return jsonify({'message': 'Reserva no encontrada'}), 404
+    return jsonify(reserva.serialize())
 
 def actualizar_reserva(idReserva):
-    if chequearInicioDeSesion:
-        idUsuario = session.get('idUsuario')  # Obtenemos el idUsuario de la sesión
-        reserva = Reserva.traer_uno_por_usuario(idReserva, idUsuario)
-        if not reserva:
-            return jsonify({'message': 'Reserva no encontrado o no autorizado para modificar'}), 404
+    reserva = Reserva.traer_uno(idReserva)
+    if not reserva:
+        return jsonify({'message': 'Reserva no encontrado'}), 404
 
     data = request.json
     reserva.cantidadPersonas = data['cantidadPersonas']
@@ -124,26 +105,14 @@ def actualizar_reserva(idReserva):
     reserva.ubicacion = data['ubicacion']
     reserva.ocasionEspecial = data['ocasionEspecial']
     reserva.ocasionEspecialCual = data['ocasionEspecialCual']
-    reserva.actualizar()
-    return jsonify({'message': 'Reserva actualizada.'})
+    reserva.idUsuario = data['idUsuario']
+    reserva.guardar()
+    return jsonify({'message': 'Reserva actualizado.'})
 
 def eliminar_reserva(idReserva):
-    if chequearInicioDeSesion:
-        idUsuario = session.get('idUsuario')  # Obtenemos el idUsuario de la sesión
-        reserva = Reserva.traer_uno_por_usuario(idReserva, idUsuario)
-        if not reserva:
-            return jsonify({'message': 'Reserva no encontrado o no autorizado para eliminar'}), 404
+    reserva = Reserva.traer_uno(idReserva)
+    if not reserva:
+        return jsonify({'message': 'Reserva no encontrado'}), 404
 
-        reserva.eliminar()
-        return jsonify({'message': 'Reserva eliminada satisfactoriamente.'})
-
-def consultaridAlmacenadaEnSesion():
-    return 'idUsuario' in session
-
-def chequearInicioDeSesion():
-    if session.get("idUsuario") is None:
-        resultado = True
-    else:
-        resultado = False
-
-    return resultado
+    reserva.eliminar()
+    return jsonify({'message': 'Reserva eliminado satisfactoriamente.'})
