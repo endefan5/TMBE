@@ -97,16 +97,16 @@ class Reserva:
         cursor = db.cursor()
         cursor.execute(
             "INSERT INTO reserva (cantidadPersonas, fecha, ubicacion, ocasionEspecial, ocasionEspecialCual, idUsuario) VALUES (%s, %s, %s, %s, %s, %s)",
-            (self.cantidad_personas, self.fecha, self.ubicacion, self.ocasion_especial, self.ocasion_especial_cual, self.id_usuario)
+            (self.cantidadPersonas, self.fecha, self.ubicacion, self.ocasionEspecial, self.ocasionEspecialCual, self.idUsuario)
         )
         db.commit()
         cursor.close()
     
     @staticmethod
-    def traer_todos():
+    def traer_todos_por_usuario(idUsuario):
         db = get_db_connection()
         cur = db.cursor()
-        cur.execute("SELECT * FROM reserva")
+        cur.execute("SELECT * FROM reserva WHERE idUsuario=%s", (idUsuario,))
         registros = cur.fetchall()
         reservas = []
         for registro in registros:
@@ -117,24 +117,33 @@ class Reserva:
         return reservas
 
     @staticmethod
-    def traer_uno(idReserva):
+    def traer_uno_por_usuario(idReserva, idUsuario):
         db = get_db_connection()
         cursor = db.cursor()
-        cursor.execute("SELECT * FROM reserva WHERE idReserva=%s", (idReserva,))
+        cursor.execute("SELECT * FROM reserva WHERE idReserva=%s AND idUsuario=%s", (idReserva, idUsuario))
         row = cursor.fetchone()
         cursor.close()
         if row:
             return Reserva(idReserva=row[0], cantidadPersonas=row[1], fecha=row[2], ubicacion=row[3], ocasionEspecial=row[4], ocasionEspecialCual=row[5], idUsuario=row[6])
         return None
     
-    def eliminar(self):
+    def actualizar(self):
         db = get_db_connection()
         cursor = db.cursor()
-        cursor.execute("DELETE FROM reserva WHERE idReserva=%s", (self.idReserva,))
+        cursor.execute(
+            "UPDATE reserva SET cantidadPersonas=%s, fecha=%s, ubicacion=%s, ocasionEspecial=%s, ocasionEspecialCual=%s WHERE idReserva=%s AND idUsuario=%s",
+            (self.cantidadPersonas, self.fecha, self.ubicacion, self.ocasionEspecial, self.ocasionEspecialCual, self.idReserva, self.idUsuario)
+        )
         db.commit()
         cursor.close()
 
-    
+    def eliminar(self):
+        db = get_db_connection()
+        cursor = db.cursor()
+        cursor.execute("DELETE FROM reserva WHERE idReserva=%s AND idUsuario=%s", (self.idReserva, self.idUsuario))
+        db.commit()
+        cursor.close()
+
     def serialize(self):
         return {
             'idReserva': self.idReserva,
