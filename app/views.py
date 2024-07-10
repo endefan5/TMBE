@@ -47,27 +47,15 @@ def eliminar_usuario(id):
     usuario.eliminar()
     return jsonify({'message': 'Usuario eliminado satisfactoriamente.'})
 
-
-def login(emailUsuario, clave):
-    usuario = Usuario.buscar_por_email(emailUsuario)
-    if usuario and usuario.verificar_contrasena(clave):
-        session['idUsuario'] = usuario.id
-        return jsonify({'message': 'Login exitoso'}), 200
-    else:
-        return jsonify({'message': 'Credenciales inválidas'}), 401
-
-def logout():
-    session.clear()
-    return jsonify({'message': 'Logout exitoso'}), 200
-
-
 def crear_reserva():
     cantidadPersonas = request.form.get("cantidadPersonas")
     fecha = request.form.get("fecha")
     ubicacion = request.form.get("ubicacion")
     ocasionEspecial = request.form.get("ocasionEspecial")
     ocasionEspecialCual = request.form.get("ocasionEspecialCual")
-    idUsuario = request.form.get("idUsuario")  # Este valor deberá manejarse adecuadamente al implementar el sistema de login
+    emailUsuario = request.form.get("emailUsuario")
+    telefonoUsuario = request.form.get("telefonoUsuario")
+    nombreCompletoUsuario = request.form.get("nombreCompletoUsuario")
 
     # Validación de los datos, asegurándote de que los tipos de datos sean correctos y que los valores estén dentro de los rangos esperados
 
@@ -77,7 +65,9 @@ def crear_reserva():
         ubicacion=ubicacion,
         ocasionEspecial=ocasionEspecial,
         ocasionEspecialCual=ocasionEspecialCual,
-        idUsuario=idUsuario
+        emailUsuario=emailUsuario,
+        telefonoUsuario=telefonoUsuario,
+        nombreCompletoUsuario=nombreCompletoUsuario
     )
     nueva_reserva.guardar()
 
@@ -88,14 +78,14 @@ def traer_reservas():
     reservas = Reserva.traer_todos()
     return jsonify([reserva.serialize() for reserva in reservas]), 200
 
-def traer_reserva(idReserva):
-    reserva = Reserva.traer_uno(idReserva)
+def traer_reserva(emailUsuario):
+    reserva = Reserva.traer_uno(emailUsuario)
     if not reserva:
         return jsonify({'message': 'Reserva no encontrada'}), 404
     return jsonify(reserva.serialize())
 
-def actualizar_reserva(idReserva):
-    reserva = Reserva.traer_uno(idReserva)
+def actualizar_reserva(emailUsuario):
+    reserva = Reserva.traer_uno(emailUsuario)
     if not reserva:
         return jsonify({'message': 'Reserva no encontrado'}), 404
 
@@ -109,8 +99,8 @@ def actualizar_reserva(idReserva):
     reserva.guardar()
     return jsonify({'message': 'Reserva actualizado.'})
 
-def eliminar_reserva(idReserva):
-    reserva = Reserva.traer_uno(idReserva)
+def eliminar_reserva(emailUsuario):
+    reserva = Reserva.traer_uno(emailUsuario)
     if not reserva:
         return jsonify({'message': 'Reserva no encontrado'}), 404
 
