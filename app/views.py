@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, request, jsonify, session
 from app.models import Reserva
 from app.models import Usuario
 
@@ -48,6 +48,19 @@ def eliminar_usuario(id):
 
     usuario.eliminar()
     return jsonify({'message': 'Usuario eliminado satisfactoriamente.'})
+
+def login(emailUsuario, clave):
+    usuario = Usuario.buscar_por_email(emailUsuario)
+    if usuario and usuario.verificar_contrasena(clave):
+        session['idUsuario'] = usuario.id
+        return jsonify({'message': 'Login exitoso'}), 200
+    else:
+        return jsonify({'message': 'Credenciales inválidas'}), 401
+
+def logout():
+    session.clear()
+    return jsonify({'message': 'Logout exitoso'}), 200
+
 
 def crear_reserva():
     cantidadPersonas = request.form.get("cantidadPersonas")

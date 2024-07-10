@@ -38,6 +38,20 @@ class Usuario:
         return usuarios
 
     @staticmethod
+    def buscar_por_email(emailUsuario):
+        db = get_db_connection()
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM usuario WHERE email=%s", (emailUsuario,))
+        row = cursor.fetchone()
+        cursor.close()
+        if row:
+            return Usuario(id=row[0], email=row[1], clave=row[2])
+        return None
+    
+    def verificar_contrasena(self, clave):
+        return self.clave == clave
+
+    @staticmethod
     def traer_uno(id):
         db = get_db_connection()
         cursor = db.cursor()
