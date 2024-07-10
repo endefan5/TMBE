@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/Estilos/Estilos.css" rel="stylesheet">
+    <link href="../Img/favicon.ico" rel="icon">
+    <title>Reservas</title>
+    <style>
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+        }
+        body {
+            background-color: #359dd9;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Inicio.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Menu.html">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="Reserva.html">Reservas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Historia.html">Sobre nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="isesion.html">Iniciar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <form class="formulario" id="reservaForm" action="http://127.0.0.1:5000/crear_reserva" method="POST">
+            <h2 class="parrafo">Ingrese la información de la reserva.</h2>
+            <div class="cuerpo">
+                <div>
+                    <label>Fecha:</label>
+                    <input id="seleccionFechaReserva" type="datetime-local" class="form-control" name="message">
+                </div>
+                <div>
+                    <label>Cantidad de personas:</label>
+                    <input type="number" class="form-control" name="npersonas" id="NumPersonas"
+                        placeholder="Número de personas" min="1">
+                </div>
+                <div>
+                    <label>Ubicación:</label>
+                    <select class="form-control" name="ubicacion" id="Ubicacion">
+                        <option value="" selected>Seleccione una opción</option>
+                        <option value="Afuera">Balcón</option>
+                        <option value="Salon">Salón</option>
+                        <option value="Terraza">Terraza</option>
+                    </select>
+                </div>
+                <div class="ocaEsp">
+                    <label>¿Festeja una ocasión especial?</label>
+                    <div class="secOcaEsp">
+                        <div class="secOcaEspSi">
+                            <label>Sí</label>
+                            <input id="radioSi" type="radio" name="Festejo" value="true" onclick="mostrar_festejos()">
+                        </div>
+                        <div class="secOcaEspSi">
+                            <label>No</label>
+                            <input id="radioNo" type="radio" name="Festejo" value="false" onclick="ocultar_festejos()">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <select class="form-select" name="festejos" id="festejos" style="display: none;">
+                        <option value="" selected>Seleccione una opción</option>
+                        <option value="Aniversario">Aniversario</option>
+                        <option value="Cumpleanios">Cumpleaños</option>
+                        <option value="Graduacion">Graduación</option>
+                        <option value="Otros">Otros</option>
+                    </select>
+                </div>
+                <button class="btn btn-outline-info" id="enviarReserva" type="submit"
+                    style="display: none;">Enviar</button>
+            </div>
+        </form>
+    </main>
+    <iframe src="footer.html"></iframe>
+    <img src="../Img/LogoMoe.png" alt="">
+    <img class="logo" src="./Img/LogoMoe.png" alt="">
+    <script src="../Acciones.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const numPersonas = document.getElementById('NumPersonas');
+            const festejos = document.getElementById('festejos');
+            const ubicacion = document.getElementById('Ubicacion');
+            const seleccionFechaReserva = document.getElementById('seleccionFechaReserva');
+            const enviarBtn = document.getElementById('enviarReserva');
+            const radioSi = document.getElementById('radioSi');
+            const radioNo = document.getElementById('radioNo');
+    
+            const eventoEspecial = "";  // Asignación correcta de eventoEspecial
+    
+            // Clear fields on page load to ensure placeholders are respected
+            const clearFields = () => {
+                numPersonas.value = '';
+                festejos.value = '';
+                ubicacion.value = '';
+                seleccionFechaReserva.value = '';
+            };
+    
+            const checkFields = () => {
+                const allValid = numPersonas.value !== '' && seleccionFechaReserva.value !== '' && ubicacion.value !== '';
+                const radioNoChecked = radioNo.checked;
+                const radioSiChecked = radioSi.checked && festejos.value !== '';
+    
+                if (allValid && (radioNoChecked || radioSiChecked)) {
+                    enviarBtn.style.display = 'block';
+                } else {
+                    enviarBtn.style.display = 'none';
+                }
+            };
+    
+            numPersonas.addEventListener('input', checkFields);
+            seleccionFechaReserva.addEventListener('input', checkFields);
+            ubicacion.addEventListener('change', checkFields);
+            radioSi.addEventListener('change', checkFields);
+            radioNo.addEventListener('change', checkFields);
+            festejos.addEventListener('change', checkFields);
+    
+            // Hide the button initially and clear fields on page load
+            enviarBtn.style.display = 'none';
+            clearFields();
+        });
+    
+        function mostrar_festejos() {
+            document.getElementById('festejos').style.display = 'block';
+            checkFields();
+        }
+    
+        function ocultar_festejos() {
+            document.getElementById('festejos').style.display = 'none';
+            document.getElementById('festejos').value = '';
+            checkFields();
+        }
+    </script>
+    
+</body>
+
+</html>

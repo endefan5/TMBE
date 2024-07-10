@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <link href="Estilos/bootstrap.css" rel="stylesheet">
+    <link href="Img/favicon.ico" rel="icon">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Inicio.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Menu.html">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Reserva.html">Reservas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Historia.html">Sobre nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="isesion.html">Iniciar sesión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="isesion.html">Registrate</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <form class="formulario" action="http://127.0.0.1:5000/iniciar_sesion" method="POST">
+        <h2 class="parrafo">Iniciar sesión</h2>
+        <label for="Usuario">Usuario:</label>
+        <input class="form-control" type="text" name="usuario" id="">
+        <label for="Clave">Contraseña:</label>
+        <input class="form-control" type="password" name="clave"> <br>
+        <input type="submit" value="Enviar">
+    </form>
+
+
+    
+</body>
+
+</html>

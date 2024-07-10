@@ -1,10 +1,8 @@
-from flask import Flask, session
+from flask import Flask
 from flask_cors import CORS
-from app.database import iniciar_app
 from app.views import *
 
 app = Flask(__name__)
-iniciar_app(app)
 CORS(app)
 
 # Rutas existentes
@@ -14,15 +12,12 @@ app.route("/traer_usuarios", methods=["GET"])(traer_usuarios)
 app.route("/traer_usuario/<int:id>", methods=["GET"])(traer_usuario)
 app.route("/actualizar_usuario/<int:id>", methods=["PUT"])(actualizar_usuario)
 app.route("/eliminar_usuario/<int:id>", methods=["DELETE"])(eliminar_usuario)
+app.route("/reservas", methods=["GET"])(reservas)
 app.route("/crear_reserva", methods=["POST"])(crear_reserva)
 app.route("/traer_reservas", methods=["GET"])(traer_reservas)
-app.route("/traer_reserva/<int:idReserva>", methods=["GET"])(traer_reserva)
-app.route("/actualizar_reserva/<int:id>", methods=["PUT"])(actualizar_reserva)
-app.route("/eliminar_reserva/<int:id>", methods=["DELETE"])(eliminar_reserva)
-
-# Nuevas rutas para login/logout
-app.route("/login/<string:emailUsuario>/<string:clave>", methods=["POST"])(login)
-app.route("/logout", methods=["POST"])(logout)
+app.route("/traer_reserva/<string:emailUsuario>", methods=["GET"])(traer_reserva)
+app.route("/actualizar_reserva/<string:emailUsuario>", methods=["PUT"])(actualizar_reserva)
+app.route("/eliminar_reserva/<string:emailUsuario>", methods=["DELETE"])(eliminar_reserva)
 
 if __name__ == "__main__":
     app.run(debug=True)

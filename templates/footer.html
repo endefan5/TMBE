@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="Estilos/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <style>
+        div a {
+            text-decoration: none;
+        }
+
+        div a i {
+            font-size: 32px;
+        }
+
+        a:link,
+        a:visited {
+            color: white;
+        }
+        
+        .footerBody {
+            background-color: #1e6187;
+            padding: 0;
+            margin: 0;
+            height: min-content;
+            display: flex;
+            flex-direction: row;
+            PADDING-LEFT: 5%;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+
+        .footer-contenedor {
+            display: flex;
+            gap: 2%;
+            flex-direction: row;
+            justify-content: start;
+            width: calc(100% - 300px);
+        }
+
+        .footer-contenido {
+            border-right: 1px solid white;
+            padding: 1% 1% 1% 1%;
+            width: 25vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-content: center;
+        }
+
+        .contRedes {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: start;
+        }
+
+        .footer-contenido p {
+            font-size: 0.85em;
+            color: white;
+        }
+
+        .contRedes a{
+            margin-right: 5%;
+        }
+
+        .footer-contenido input{
+            height: 20px;
+            margin-bottom: 2.5%;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body class="footerBody">
+    
+
+    <div class="footer-contenedor">
+        <article class="footer-contenido" name="Iconos">
+            <p>Suscríbete a nuestras novedades</p>
+            <input type="email">
+            <button type="button" class="btn btn-primary btn-sm">Enviar</button>
+        </article>
+        <article class="footer-contenido" name="Iconos">
+            <p>Seguinos en nuestras redes sociales</p>
+            <div class="contRedes">
+                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+        </article>
+        <article class="footer-contenido" name="Iconos">
+            <p>© 2024 La taberna de Moe. <br><br>Todos los derechos reservados.</p>
+        </article>
+
+    </div>
+
+</body>
+
+</html>

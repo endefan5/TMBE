@@ -1,0 +1,745 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+body {
+    background-color: #359dd9;
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    padding-left: 4vw;
+    padding-right: 4vw;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+
+nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    display: flex;
+    background-color: #1e6187;
+    height: 10vh;
+    align-items: center;
+}
+
+ul li {
+    display: inline;
+    padding-left: 1vw;
+    padding-right: 1vh;
+}
+
+h1 {
+    color: #000344;
+}
+
+nav li a {
+    text-decoration: none;
+    font-weight: bold;
+    font-family: "Indie Flower", cursive;
+    font-size: 1.75em;
+    color: white;
+    font-weight: 400;
+    font-style: normal;
+}
+
+nav li a:hover {
+    color: #ffeb00;
+    font-size: 2.5em;
+}
+*/
+p {
+    color: white;
+    font-size: 1em;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+footer {
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 17vh;
+    z-index: 0;
+    background-color: #1e6187;
+}
+
+.footerBody {
+    background-color: #1e6187;
+    padding: 0;
+    margin: 0;
+    height: min-content;
+    display: flex;
+    flex-direction: row;
+    PADDING-LEFT: 5%;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+.footer-contenedor {
+    display: flex;
+    gap: 2%;
+    flex-direction: row;
+    justify-content: start;
+    width: calc(100% - 300px);
+}
+
+.footer-contenido {
+    border-right: 1px solid white;
+    padding: 1% 1% 1% 1%;
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.contRedes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.footer-contenido p {
+    font-size: 1.1em;
+}
+
+iframe {
+    background-color: #1e6187;
+    width: 100%;
+    overflow: hidden;
+    border: 0;
+
+}
+
+.grid-container {
+    background-color: transparent;
+    display: inline-grid;
+    column-width: 35%;
+    column-gap: 5%;
+    row-gap: 5%;
+    width: 90%;
+    grid-template-columns: auto auto;
+}
+
+
+/*SECTOR CARROUSEL HOME*/
+
+.slider-frame {
+    width: 80%;
+    height: auto;
+    margin: 10px auto 0;
+    overflow: hidden;
+}
+
+.slider-frame ul {
+    display: flex;
+    animation: slide 35s infinite linear;
+    padding: 0;
+    width: 700%;
+}
+
+.slider-frame li {
+    list-style: none;
+    width: 100%;
+
+}
+
+.slider-frame img {
+    width: 100%;
+}
+
+@keyframes slide {
+    0% {
+        margin-left: 0%;
+    }
+
+    9.28% {
+        margin-left: 0%;
+    }
+
+    14.28% {
+        margin-left: -100%;
+    }
+
+    23.56% {
+        margin-left: -100%;
+    }
+
+    28.56% {
+        margin-left: -200%;
+    }
+
+    37.84% {
+        margin-left: -200%;
+    }
+
+    42.84% {
+        margin-left: -300%;
+    }
+
+    52.14% {
+        margin-left: -300%;
+    }
+
+    57.14% {
+        margin-left: -400%;
+    }
+
+    66.4% {
+        margin-left: -400%;
+    }
+
+    71.4% {
+        margin-left: -500%;
+    }
+
+    80.68% {
+        margin-left: -500%;
+    }
+
+    85.68% {
+        margin-left: -600%;
+    }
+
+    94.96% {
+        margin-left: -600%;
+    }
+}
+
+/*NUESTRA CARTA*/
+
+.titulo {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.sectorComidas {
+    width: 90%;
+    height: fit-content;
+    padding: 2% 2% 2% 2%;
+    background-color: #7d7d7d;
+    color: black;
+    margin-bottom: 5%;
+    box-shadow: 10px 10px;
+    border-radius: 75px;
+}
+
+.sectorComidas:hover {
+    background-color: #4e00647a;
+    color: yellow;
+}
+
+/* #comidas:hover {
+    background-color: #4e00647a;
+    color: yellow;
+}
+
+#bebidas:hover {
+    background-color: #4e00647a;
+    color: yellow;
+}
+
+#postres:hover {
+    background-color: #4e00647a;
+    color: yellow;
+} */
+
+.menu {
+    padding: 5% 5% 5% 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.menuitemimg {
+    height: 200px;
+    width: auto;
+}
+
+.menuitem:hover {
+    transform: scale(1.1);
+    /* Escala el elemento al 110% en el hover */
+}
+
+.subsector {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.menuitem {
+    overflow: hidden;
+    /* Para ocultar el contenido que sobresale durante el zoom */
+    transition: transform 0.3s ease;
+    /* Transición suave para el efecto de zoom */
+    height: 250px;
+    width: auto;
+    padding: 1% 1% 1% 1%;
+    margin-bottom: 2%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+h3 {
+    color: white;
+    margin-bottom: 1%;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-weight: 400;
+}
+
+/* h4 {
+    font-family: "Amatic SC", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 3em;
+    text-decoration: underline;
+    text-align: center;
+    color: yellow;
+} */
+
+.menuitemdesc {
+    text-align: center;
+    font-size: 1.125em;
+}
+
+/*SECTOR RESERVAS*/
+
+.formulario {
+    margin: 0 auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    background-color: #2774a0;
+    font-family: "Indie Flower", cursive;
+    font-size: 1.75em;
+    color: white;
+    width: 30%;
+    box-shadow: 10px 10px black;
+    height: fit-content;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 2% 2% 2% 2%;
+    justify-items: start;
+    justify-content: center;
+    align-items: center;
+}
+
+.cuerpo label {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.desc {
+    width: 100%;
+    margin-bottom: 5%;
+    text-align: center;
+}
+
+.desc p {
+    font-family: "Lora", serif;
+    font-size: 0.955em;
+    text-decoration: underline;
+    color: yellow;
+}
+
+.cuerpo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.cuerpo p {
+    color: white;
+    font-family: "Lora", serif;
+    font-size: 0.6em;
+}
+
+.formulario input,
+.formulario select,
+.formualrio textarea {
+    width: 70%;
+    height: 30px;
+}
+
+
+#festejos {
+    display: none;
+
+}
+
+.botton {
+    width: 100px;
+    height: 50px;
+    margin: 0 auto;
+    border-radius: 15px;
+    background-color: #637B7B;
+    color: white;
+}
+
+#apartadoDeContacto {
+    margin-top: 50px;
+    background-color: #dde8e8;
+    height: fit-content;
+    border-radius: 5px;
+    border: 1px solid black;
+    box-shadow: 6px 20px 10px black;
+    text-align: center;
+    font-size: 20px;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2%;
+}
+
+.ContactoBox {
+    margin-top: 15px;
+    width: 95%;
+}
+
+
+.cajaDeContacto {
+    text-align: center;
+    width: 90%;
+}
+
+.box {
+    padding: auto;
+    margin-bottom: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.box input {
+    width: 75%;
+    height: 30px;
+}
+
+.textArea {
+    display: flex;
+}
+
+.ocaEsp {
+    width: 100%;
+    align-items: center;
+}
+
+.secOcaEsp {
+    width: 40%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.secOcaEsp label {
+    font-size: 20px;
+}
+
+.secOcaEspSi {
+    width: 30%;
+    height: min-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+}
+
+@media only screen and (max-width: 1100px) {
+    .formulario {
+        width: 40%;
+    }
+
+    .logo {
+        width: 200px;
+        height: auto;
+    }
+
+    .footer-contenedor {
+        width: calc(100% - 200px);
+    }
+
+    .footer-contenido p {
+        font-size: 1em;
+    }
+
+    nav li a {
+        font-size: 1.55em;
+    }
+
+    nav li a:hover {
+        color: #ffeb00;
+        font-size: 2em;
+    }
+
+    h4 {
+        font-size: 2.5em;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .formulario {
+        width: 50%;
+    }
+
+    .desc p {
+        font-size: 0.85em;
+    }
+
+    .logo {
+        width: 150px;
+        height: auto;
+    }
+
+    .footer-contenedor {
+        width: calc(100% - 150px);
+    }
+
+    .footer-contenido p {
+        font-size: 0.9em;
+    }
+
+    nav li a {
+        font-size: 1.35em;
+    }
+
+    nav li a:hover {
+        color: #ffeb00;
+        font-size: 1.75em;
+    }
+
+    h4 {
+        font-size: 2em;
+    }
+
+    .sectorComidas {
+        border-radius: 55px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .formulario {
+        width: 60%;
+    }
+
+    .cuerpo p {
+        font-size: 0.5em;
+    }
+
+    .desc p {
+        font-size: 0.80em;
+    }
+
+    .footer-contenido p {
+        font-size: 0.7em;
+    }
+
+    nav li a {
+        font-size: 1.15em;
+    }
+
+    nav li a:hover {
+        color: #ffeb00;
+        font-size: 1.55em;
+    }
+
+    .logo {
+        width: 120px;
+        height: auto;
+    }
+
+    .footer-contenedor {
+        width: calc(100% - 120px);
+    }
+
+    h4 {
+        font-size: 1.75em;
+    }
+
+    .sectorComidas {
+        border-radius: 45px;
+        width: 45%;
+    }
+
+    .menu {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .formulario {
+        width: 70%;
+    }
+
+    .footer-contenido p {
+        font-size: 0.6em;
+    }
+
+    nav li a {
+        font-size: 1.05em;
+    }
+
+    nav li a:hover {
+        color: #ffeb00;
+        font-size: 1.25em;
+    }
+
+    .logo {
+        width: 90px;
+        height: auto;
+    }
+
+    .footer-contenedor {
+        width: calc(100% - 90px);
+    }
+
+    h4 {
+        font-size: 1.5em;
+    }
+
+    .sectorComidas {
+        border-radius: 35px;
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .formulario {
+        width: 90%;
+    }
+
+    .footer-contenido p {
+        font-size: 0.5em;
+    }
+
+    nav li a {
+        font-size: 1em;
+    }
+
+    nav li a:hover {
+        color: #ffeb00;
+        font-size: 1em;
+    }
+
+    .logo {
+        width: 75px;
+        height: auto;
+    }
+
+    .footer-contenedor {
+        width: calc(100% - 75px);
+    }
+
+    h4 {
+        font-size: 1.25em;
+    }
+
+    .sectorComidas {
+        border-radius: 25px;
+        width: 50%;
+    }
+}
+
+/*SECTOR SOBRE NOSOTROS*/
+
+.filaSectorNosotros {
+    display: flex;
+    margin-top: 5%;
+    width: 90%;
+    gap: 10%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 5%;
+}
+
+.sectorOculto {
+    display: none;
+}
+
+.sectorRetraido {
+    width: 25%;
+    height: fit-content;
+    padding: 2% 2% 2% 2%;
+    background-color: #7d7d7d;
+    margin-bottom: 5%;
+    box-shadow: 10px 10px;
+    border-radius: 75px;
+    color: black;
+
+}
+
+
+
+.sectorRetraido:hover {
+    /* display: flex; */
+    width: 25%;
+    height: fit-content;
+    padding: 2% 2% 2% 2%;
+    background-color: #4e00647a;
+    margin-bottom: 5%;
+    box-shadow: 10px 10px;
+    border-radius: 75px;
+    color: yellow;
+}
+
+.sectorExpandido {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: fit-content;
+    padding: 2% 2% 2% 2%;
+    background-color: #4e00647a;
+    margin-bottom: 5%;
+    box-shadow: 10px 10px;
+    border-radius: 75px;
+    color: yellow;
+}
+
+.flechaAbajo {
+    width: 40px;
+    height: 40px;
+}
+
+.tit {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.tit h2 {
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 1.5em;
+    text-decoration: underline;
+    text-align: center;
+    color: white;
+}

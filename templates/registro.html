@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="Estilos/bootstrap.css" rel="stylesheet">
+    <title>Registro</title>
+    <style>
+        .formularioRegistro{
+            margin: 0 auto;
+            margin-top: 5%;
+            margin-bottom: 5%;
+            background-color: #4e00647a;
+            font-family: "Indie Flower", cursive;
+            font-size: 1em;
+            color: white;
+            width: 60%;
+            box-shadow: 10px 10px black;
+            height: fit-content;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            padding: 2% 2% 2% 2%;
+            justify-items: start;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .formularioRegistro section{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 90%;
+            margin-bottom: 5%;
+        }
+
+        .formularioRegistro section div label{
+            font-size: 1em;
+        }
+
+        .form-controlRegistro{
+            display: block;
+            width: 90%;
+            padding: 1rem 1.5rem;
+            font-size: .75rem;
+            font-weight: 200;
+            line-height: 1.5;
+            color: var(--bs-body-color);
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-color: #f0f5fa;
+            background-clip: padding-box;
+            border: var(--bs-border-width) solid var(--bs-border-color);
+            border-radius: var(--bs-border-radius);
+            box-shadow: var(--bs-box-shadow-inset);
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .formularioRegistro h2{
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            line-height: 1.2;
+            color: yellow;
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Inicio.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Menu.html">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Reserva.html">Reservas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Historia.html">Sobre nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="isesion.html">Iniciar sesión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="isesion.html">Registrate</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <form id="userForm" class="formularioRegistro" action="http://127.0.0.1:5000/crear_usuario" method="POST">
+            <h2 class="parrafo">Registrate</h2>
+            <section>
+                <div>
+                    <label for="Usuario">Nombre:</label>
+                    <input class="form-control" type="text" name="nombre" value="nombre" id="txtNombre">
+                    <label for="Usuario">Apellido:</label>
+                    <input class="form-control" type="text" name="apellido" value="apellido" id="txtApellido">
+                    <label for="Usuario">E-Mail:</label>
+                    <input class="form-control" type="text" name="email" value="email" id="txtEmail"></div>
+                <div>
+                    <label for="Usuario">Teléfono:</label>
+                    <input class="form-control" type="text" name="telefono" value="telefono" id="txtTelefono">
+                    <label for="Usuario">Usuario:</label>
+                    <input class="form-control" type="text" name="usuario" value="usuario" id="txtUsuario">
+                    <label for="Clave">Contraseña:</label>
+                    <input type="password" class="form-control" name="clave" value="clave" id="floatingPassword" placeholder="Password" autocomplete="off">
+                </div>
+            </section>
+            <button type="submit" class="btn btn-outline-primary">Registrarme</button>
+        </form>
+        <img class="logo" src="./Img/LogoMoe.png" alt="">
+    </main>
+    <iframe src="footer.html"></iframe>
+    
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nombre = document.getElementById('txtNombre');
+            const email = document.getElementById('txtEmail');
+            const telefono = document.getElementById('txtTelefono');
+            const asunto = document.getElementById('txtAsunto');
+            const mensaje = document.getElementById('txtMensaje');
+            const enviarBtn = document.getElementById('enviarSolicitudContacto');
+
+            // Clear fields on page load to ensure placeholders are respected
+            const clearFields = () => {
+                nombre.value = '';
+                email.value = '';
+                telefono.value = '';
+                asunto.value = '';
+                mensaje.value = '';
+            };
+
+            const checkFields = () => {
+                const allValid = [nombre, email, telefono, asunto, mensaje].every(field => field.classList.contains('is-valid'));
+                enviarBtn.style.display = allValid ? 'block' : 'none';
+            };
+
+            const validateField = (field, validationFn) => {
+                field.addEventListener('input', () => {
+                    if (validationFn(field.value)) {
+                        field.classList.remove('is-invalid');
+                        field.classList.add('is-valid');
+                    } else {
+                        field.classList.remove('is-valid');
+                        field.classList.add('is-invalid');
+                    }
+                    checkFields();
+                });
+            };
+
+            const isValidText = (text) => text.trim().length > 0;
+            const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            const isValidPhone = (phone) => /^\d{10}$/.test(phone);
+
+            validateField(nombre, isValidText);
+            validateField(email, isValidEmail);
+            validateField(telefono, isValidPhone);
+            validateField(asunto, isValidText);
+            validateField(mensaje, isValidText);
+
+            // Hide the button initially and clear fields on page load
+            enviarBtn.style.display = 'none';
+            clearFields();
+        });
+
+        document.addEventListener('scroll', function () {
+            const logo = document.querySelector('.logo');
+            const threshold = 100;
+
+            if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - threshold)) {
+                logo.classList.add('large');
+            } else {
+                logo.classList.remove('large');
+            }
+        });
+
+
+    </script>
+</body>
+</html>

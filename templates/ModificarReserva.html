@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<body>
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Inicio.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Menu.html">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="Reserva.html">Reservas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Historia.html">Sobre nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="isesion.html">Iniciar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <form action="http://127.0.0.1:5000/traer_reserva<string:emailUsuario>" method="get">
+            <h2>Ingrese el mail del usuario</h2>
+            <div>
+                <input type="email" class="form-control" name="emailUsuario">
+                <button class="btn btn-outline-info" id="consultarReservas" type="submit">Enviar</button>
+            </div>
+
+        </form>
+        <h1>Detalles de la Reserva</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID Reserva</th>
+                <th>Cantidad de Personas</th>
+                <th>Fecha</th>
+                <th>Ubicación</th>
+                <th>Ocasión Especial</th>
+                <th>Email del Usuario</th>
+                <th>Teléfono del Usuario</th>
+                <th>Nombre Completo del Usuario</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reserva in reservas %}
+            <tr>
+                <td>{{ reserva.idReserva }}</td>
+                <td>{{ reserva.cantidadPersonas }}</td>
+                <td>{{ reserva.fecha }}</td>
+                <td>{{ reserva.ubicacion }}</td>
+                <td>{{ reserva.ocasionEspecial }}</td>
+                <td>{{ reserva.emailUsuario }}</td>
+                <td>{{ reserva.telefonoUsuario }}</td>
+                <td>{{ reserva.nombreCompletoUsuario }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </main>
+</body>
+</html>

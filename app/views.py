@@ -1,6 +1,5 @@
-from flask import Flask, request, jsonify, session
-from app.models import Reserva
-from app.models import Usuario
+from flask import jsonify, request, redirect, url_for, render_template, app
+from app.models import Reserva, Usuario
 
 def index():
     return jsonify({'message': "Bienvenidos a la API de la Taberna de Moe"})
@@ -14,7 +13,11 @@ def crear_usuario():
     telefono = request.form.get("telefono")
     nuevo_usuario = Usuario(None, usuario, clave, nombre, apellido, email, telefono)
     nuevo_usuario.guardar()
-    return jsonify({"message": "Usuario creado satisfactoriamente"}), 201
+    # Redirigir a la página de reservas después de crear el usuario
+    return redirect(url_for('reservas'))
+
+def reservas():
+    return render_template('Reserva.html')
 
 def traer_usuarios():
     usuarios = Usuario.traer_todos()
@@ -73,16 +76,29 @@ def crear_reserva():
 
     return jsonify({"message": "Reserva creada satisfactoriamente"}), 201
 
-
 def traer_reservas():
     reservas = Reserva.traer_todos()
     return jsonify([reserva.serialize() for reserva in reservas]), 200
 
+@app.route("/traer_reserva/<string:emailUsuario>", methods=["GET"])
 def traer_reserva(emailUsuario):
     reserva = Reserva.traer_uno(emailUsuario)
     if not reserva:
         return jsonify({'message': 'Reserva no encontrada'}), 404
-    return jsonify(reserva.serialize())
+
+    reserva_data = {
+        'idReserva': reserva.idReserva,
+        'cantidadPersonas': reserva.cantidadPersonas,
+        'fecha': reserva.fecha.strftime('%Y-%m-%d'),
+        'ubicacion': reserva.ubicacion,
+        'ocasionEspecial': reserva.ocasionEspecial,
+        'emailUsuario': reserva.emailUsuario,
+        'telefonoUsuario': reserva.telefonoUsuario,
+        'nombreCompletoUsuario': reserva.nombreCompletoUsuario
+    }
+
+    return jsonify(reserva_data)
+
 
 def actualizar_reserva(emailUsuario):
     reserva = Reserva.traer_uno(emailUsuario)
@@ -97,12 +113,12 @@ def actualizar_reserva(emailUsuario):
     reserva.ocasionEspecialCual = data['ocasionEspecialCual']
     reserva.idUsuario = data['idUsuario']
     reserva.guardar()
-    return jsonify({'message': 'Reserva actualizado.'})
+    return jsonify({'message': 'Reserva actualizada.'})
 
 def eliminar_reserva(emailUsuario):
     reserva = Reserva.traer_uno(emailUsuario)
     if not reserva:
-        return jsonify({'message': 'Reserva no encontrado'}), 404
+        return jsonify({'message': 'Reserva no encontrada'}), 404
 
     reserva.eliminar()
-    return jsonify({'message': 'Reserva eliminado satisfactoriamente.'})
+    return jsonify({'message': 'Reserva eliminada satisfactoriamente.'})

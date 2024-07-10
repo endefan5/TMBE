@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="Estilos/bootstrap.css" rel="stylesheet">
+    <link href="Img/favicon.ico" rel="icon">
+    <title>Contacto</title>
+    <style>
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            min-height: 80vh;
+            height: fit-content;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Inicio.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Menu.html">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Reserva.html">Reservas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="Contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Historia.html">Sobre nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="isesion.html">Iniciar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="formulario">
+            <h2 class="parrafo">Dejanos tu mensaje</h2>
+            <div class="cuerpo">
+                <div>
+                    <label>Nombre:</label>
+                    <input type="text" id="txtNombre" class="form-control" name="name" placeholder="Nombre">
+                </div>
+                <div>
+                    <label>E-mail:</label>
+                    <input type="email" id="txtEmail" class="form-control" placeholder="Enter email">
+                </div>
+                <div>
+                    <label>Teléfono:</label>
+                    <input type="tel" id="txtTelefono" class="form-control" name="number" placeholder="Teléfono">
+                </div>
+                <div>
+                    <label>Asunto:</label>
+                    <input type="text" id="txtAsunto" class="form-control" name="message" placeholder="Asunto">
+                </div>
+                <div>
+                    <label>Mensaje:</label>
+                    <textarea class="form-control" id="txtMensaje" rows="3"></textarea>
+                </div>
+                <button class="btn btn-outline-info" id="enviarSolicitudContacto" type="submit"
+                    style="display: none;">Enviar</button>
+            </div>
+
+        </section>
+        <img class="logo" src="./Img/LogoMoe.png" alt="">
+    </main>
+    <iframe src="footer.html"></iframe>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nombre = document.getElementById('txtNombre');
+            const email = document.getElementById('txtEmail');
+            const telefono = document.getElementById('txtTelefono');
+            const asunto = document.getElementById('txtAsunto');
+            const mensaje = document.getElementById('txtMensaje');
+            const enviarBtn = document.getElementById('enviarSolicitudContacto');
+
+            // Clear fields on page load to ensure placeholders are respected
+            const clearFields = () => {
+                nombre.value = '';
+                email.value = '';
+                telefono.value = '';
+                asunto.value = '';
+                mensaje.value = '';
+            };
+
+            const checkFields = () => {
+                const allValid = [nombre, email, telefono, asunto, mensaje].every(field => field.classList.contains('is-valid'));
+                enviarBtn.style.display = allValid ? 'block' : 'none';
+            };
+
+            const validateField = (field, validationFn) => {
+                field.addEventListener('input', () => {
+                    if (validationFn(field.value)) {
+                        field.classList.remove('is-invalid');
+                        field.classList.add('is-valid');
+                    } else {
+                        field.classList.remove('is-valid');
+                        field.classList.add('is-invalid');
+                    }
+                    checkFields();
+                });
+            };
+
+            const isValidText = (text) => text.trim().length > 0;
+            const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            const isValidPhone = (phone) => /^\d{10}$/.test(phone);
+
+            validateField(nombre, isValidText);
+            validateField(email, isValidEmail);
+            validateField(telefono, isValidPhone);
+            validateField(asunto, isValidText);
+            validateField(mensaje, isValidText);
+
+            // Hide the button initially and clear fields on page load
+            enviarBtn.style.display = 'none';
+            clearFields();
+        });
+
+        document.addEventListener('scroll', function () {
+            const logo = document.querySelector('.logo');
+            const threshold = 100;
+
+            if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - threshold)) {
+                logo.classList.add('large');
+            } else {
+                logo.classList.remove('large');
+            }
+        });
+
+    </script>
+</body>
+
+</html>

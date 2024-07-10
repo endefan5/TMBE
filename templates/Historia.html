@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="Estilos/bootstrap.css" rel="stylesheet">
+    <link href="Estilos/Estilos.css" rel="stylesheet">
+    <link href="Img/favicon.ico" rel="icon">
+    <title>Nuestra historia</title>
+    <style>
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+        }
+
+        .sectorOculto {
+            display: none;
+        }
+
+        .sectorRetraido {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.5s;
+        }
+
+        .sectorExpandido {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.5s;
+        }
+
+        .rotate {
+            transform: rotate(180deg);
+            transition: transform 0.5s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Inicio.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Menu.html">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Reserva.html">Reservas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="Historia.html">Sobre nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="isesion.html">Iniciar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main>
+
+        <div class="filaSectorNosotros">
+            <article class="sectorRetraido" id="1">
+                <div class="tit">
+                    <h2>Sobre Nosotros</h2>
+                    <img src="./Img/flecha-hacia-abajo.png" alt="" class="flechaAbajo" id="f1"
+                        onclick="eh1.cambiar_estado()">
+                </div>
+
+                <p id="p1" style="display: none;">Bienvenidos a La Taberna de Moe, el rincón más peculiar y animado de
+                    Springfield. Fundada por el
+                    inigualable
+                    Moe
+                    Szyslak, nuestra taberna es el punto de encuentro favorito de los habitantes de la ciudad y
+                    visitantes
+                    de
+                    otros
+                    mundos (sí, incluso los extraterrestres).</p>
+            </article>
+            <article class="sectorRetraido" id="2">
+                <div class="tit">
+                    <h2>Nuestra Historia</h2>
+                    <img src="./Img/flecha-hacia-abajo.png" alt="" class="flechaAbajo" id="f2"
+                        onclick="eh2.cambiar_estado()">
+                </div>
+                <p id="p2" style="display: none;">La Taberna de Moe abrió sus puertas en 2023, cuando Moe decidió
+                    convertir su oscuro y desaliñado bar en
+                    un
+                    lugar
+                    donde todos pudieran ahogar sus penas, compartir risas y disfrutar de una buena cerveza Duff. Desde
+                    entonces,
+                    hemos
+                    sido testigos de innumerables historias, peleas, bromas y momentos inolvidables.</p>
+            </article>
+            <article class="sectorRetraido" id="3">
+                <div class="tit">
+                    <h2>Nuestro Ambiente</h2>
+                    <img src="./Img/flecha-hacia-abajo.png" alt="" class="flechaAbajo" id="f3"
+                        onclick="eh3.cambiar_estado()">
+                </div>
+
+                <p id="p3" style="display: none;">El ambiente en La Taberna de Moe es… digamos, “auténtico”. Las luces
+                    parpadeantes, las sillas desgastadas
+                    y
+                    el
+                    olor
+                    a desinfectante son parte de nuestra esencia. Pero no te preocupes, ¡la diversión está garantizada!
+                    Nuestro
+                    cliente
+                    más asiduo, Homero Simpson, puede dar fe de ello.</p>
+            </article>
+            <article class="sectorRetraido" id="4">
+                <div class="tit">
+                    <h2>Nuestra Carta</h2>
+                    <img src="./Img/flecha-hacia-abajo.png" alt="" class="flechaAbajo" id="f4"
+                        onclick="eh4.cambiar_estado()">
+                </div>
+
+                <p id="p4" style="display: none;">En La Taberna de Moe, encontrarás una selección de bebidas que harían
+                    enrojecer a cualquier médico.
+                    Desde la
+                    cerveza
+                    Duff hasta las chuletas de cerdo, tenemos algo para todos los gustos. Y si tienes hambre, no te
+                    pierdas
+                    nuestras CostiBurger o las “Papas Fritas del Abuelo Simpson”.</p>
+            </article>
+            <article class="sectorRetraido" id="5">
+                <div class="tit">
+                    <h2>Nuestra Filosofía</h2>
+                    <img src="./Img/flecha-hacia-abajo.png" alt="" class="flechaAbajo" id="f5"
+                        onclick="eh5.cambiar_estado()">
+                </div>
+
+                <p id="p5" style="display: none;">En La Taberna de Moe, creemos que todos merecen un lugar donde puedan
+                    ser ellos mismos, incluso
+                    si eso
+                    implica
+                    llorar en una cerveza o cantar canciones tristes en el karaoke. Aquí, todos son bienvenidos,
+                    incluso si eres
+                    un
+                    alienígena verde con tres ojos.</p>
+            </article>
+            <article class="sectorRetraido" id="6">
+                <div class="tit">
+                    <h2>Únete a Nosotros</h2>
+                    <img src="./Img/flecha-hacia-abajo.png" alt="" class="flechaAbajo" id="f6"
+                        onclick="eh6.cambiar_estado()">
+                </div>
+
+                <p id="p6" style="display: none;">Así que, ¿estás listo para sumergirte en la auténtica experiencia de
+                    La Taberna de Moe? Ven,
+                    siéntate en el
+                    taburete
+                    de siempre y prepárate para vivir momentos que solo podrían ocurrir en Springfield.</p>
+            </article>
+            <article class="sectorRetraido" id="7">
+                <div class="tit">
+                    <h2>Contacto</h2>
+                    <img src="./Img/flecha-hacia-abajo.png" alt="" class="flechaAbajo" id="f7"
+                        onclick="eh7.cambiar_estado()">
+                </div>
+
+                <p id="p7" style="display: none;">¿Tienes alguna pregunta, sugerencia o simplemente quieres compartir
+                    una anécdota divertida?
+                    ¡Nos encantaría
+                    escuchar de ti! Puedes contactarnos a través de nuestro correo electrónico:
+
+                    Correo Electrónico: info@latabernademoe.com.ar </p>
+            </article>
+        </div>
+    </main>
+    <img class="logo" src="./Img/LogoMoe.png" alt="">
+
+    <iframe src="footer.html"></iframe>
+    <script src="/Acciones.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('scroll', function () {
+                console.log("Scroll event detected");
+                const logo = document.querySelector('.logo');
+                const threshold = 100;
+
+                if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - threshold)) {
+                    console.log("Adding large class");
+                    logo.classList.add('large');
+                } else {
+                    console.log("Removing large class");
+                    logo.classList.remove('large');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

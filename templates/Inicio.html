@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <link href="Estilos/bootstrap.css" rel="stylesheet">
+    <link href="Img/favicon.ico" rel="icon">
+    <title>La Taberna de Moe</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+
+        #mainInicio {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            min-height: 100vh !important;
+            background-color: #ff62ac;
+        }
+
+        .patron {
+            background-image: url(Img/istockphoto-1251213570-612x612.jpg);
+            background-repeat: repeat-x;
+            height: 60vh;
+            /* 50% de la altura de la ventana gráfica */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .patron h2,
+        .patron p {
+            color: darkslategrey;
+            text-align: center;
+        }
+
+        .patron h2 {
+            font-family: "Merriweather", serif;
+            font-weight: 700;
+            color: black;
+            margin-top: 7.5%;
+            font-style: normal;
+            text-decoration: underline;
+        }
+
+        .segundaMitadHome {
+            padding: 2% 2% 2% 2%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            height: 35vh;
+            width: 100%;
+        }
+
+        .segundaMitadHome div {
+            height: 100%;
+        }
+
+        .itemhome button {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body style="background-color: #f5c595;">
+    <main id="mainInicio">
+        <section class="patron">
+            <h2>La taberna de Moe</h2>
+            <p>¡Sumérgete en el mundo de Los Simpson mientras disfrutas de nuestras bebidas!<br>Desde la cerveza Duff
+                hasta la Llamarada Moe, tenemos algo para cada fanático.<br>¡Únete a nosotros para una experiencia digna
+                de Springfield!</p>
+        </section>
+        <section class="segundaMitadHome">
+            <!-- <div class="homeitem">
+                <h3>Reserva tu mesa</h3>
+                <p>Asegurá tu lugar en el bar más amarillo de Springfield antes de que Barney te robe tu ubicación
+                    favorita.</p>
+                <button type="button" class="btn btn-outline-info" onclick="redirigirReserva()">Reservas</button>
+            </div>
+            <div class="homeitem">
+                <h3>Chequeá nuestro menú</h3>
+                <p>Recorré nuestra amplia variedad de comidas y bebidas para deleitarte con lo mejor que Moe tiene para
+                    ofrecerte.</p>
+                <button type="button" class="btn btn-outline-info" onclick="redirigirMenu()">Menú</button>
+            </div>
+            <div class="homeitem">
+                <h3>Nuestra historia</h3>
+                <p>Conocé como inició esta aventura y como llegamos a convertirnos en el fenómeno mundial que somos hoy.
+                </p>
+                <button type="button" class="btn btn-outline-info" onclick="redirigirSobreNosotros()">Sobre
+                    Nosotros</button>
+            </div>
+            <div class="homeitem">
+                <h3>Contactanos</h3>
+                <p>Envianos tu consulta, prometemos responder ni bien logremos que el abuelo aprenda como hacerlo.</p>
+                <button type="button" class="btn btn-outline-info" onclick="redirigirContacto()">Contacto</button>
+            </div> -->
+            <div class="homeitem">
+                <h3>¿Ya nos conocías?</h3>
+                <p>Inicia sesión, amigo.</p>
+                <button type="button" class="btn btn-outline-info" onclick="iniciarSesion()">Iniciar sesión</button>
+            </div>
+            <div class="homeitem">
+                <h3>¿Recién nos conoces?</h3>
+                <p>¡Registrate, baboso!</p>
+                <button type="button" class="btn btn-outline-info" onclick="registrarme()">Yendo</button>
+            </div>
+        </section>
+        <img class="logo" src="./Img/LogoMoe.png" alt="">
+    </main>
+
+    <script>
+        function redirigirReserva() {
+            window.location.href = 'Reserva.html';
+        }
+        function redirigirMenu() {
+            window.location.href = 'Menu.html';
+        }
+        function redirigirSobreNosotros() {
+            window.location.href = 'Historia.html';
+        }
+        function redirigirContacto() {
+            window.location.href = 'Contacto.html';
+        }
+        function iniciarSesion() {
+            window.location.href = 'iSesion.html';
+        }
+        function registrarme(){
+            window.location.href = 'registro.html';
+        }
+    </script>
+</body>
+
+</html>

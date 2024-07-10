@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="Estilos/Estilos.css" rel="stylesheet">
+    <link href="Estilos/bootstrap.css" rel="stylesheet">
+
+    <link href="Img/favicon.ico" rel="icon">
+    <title>Nuestra Carta</title>
+
+    <style>
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+        }
+
+        .rotate {
+            transition: transform 0.3s ease;
+        }
+
+        .rotate.rotate180 {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Inicio.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="Menu.html">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Reserva.html">Reservas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Historia.html">Sobre nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="isesion.html">Iniciar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main style="display: flex; flex-direction: row; align-items: center; justify-content: space-around;">
+        <article class="sectorComidas" id="comidas" style="width: 25%;">
+            <div class="tit">
+                <h2>Comidas</h2>
+                <img src="./Img/flecha-hacia-abajo.png" alt="" id="FlCo1" class="flechaAbajo"
+                    onclick="comm.mostrar('comidas')">
+            </div>
+            <div class="subsector" id="SubS1" style="display: none;">
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Comidas/Chuletasdecerdo.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Chuletas de cerdo</p>
+                    <p class="precio">$10.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Comidas/Costillitasdecerdo.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Costillitas de cerdo</p>
+                    <p class="precio">$19.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Comidas/KhlavKalash.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Khlav Kalash</p>
+                    <p class="precio">$7.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Comidas/Gazpacho.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Gazpacho</p>
+                    <p class="precio">$12.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Comidas/Hamburguejasalvapor.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Hamburguejas al vapor</p>
+                    <p class="precio">$10.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Comidas/KruustyBurger.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">KrustyBurger</p>
+                    <p class="precio">$5.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Comidas/Dedosdepollo.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Dedos de pollo</p>
+                    <p class="precio">$16.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Comidas/ArrozLennyyCarl.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Arroz Lenny y Carl</p>
+                    <p class="precio">$24.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Comidas/CostiBurger.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">CostiBurger</p>
+                    <p class="precio">$5.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Comidas/Hamburguesavegana.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">LisaGuesa de legumbres</p>
+                    <p class="precio">$11.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Comidas/Sandwichdealbondigas.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Sándwich de albóndigas</p>
+                    <p class="precio">$5.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Comidas/pizzapepperoni.webp" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Pizza de pepperoni</p>
+                    <p class="precio">$3.99</p>
+                </div>
+            </div>
+        </article>
+        <article class="sectorComidas" id="bebidas" style="width: 25%;">
+            <div class="tit">
+                <h2>Postres</h2>
+                <img src="./Img/flecha-hacia-abajo.png" alt="" id="FlCo2" class="flechaAbajo" onclick="bebb.mostrar()">
+            </div>
+            <div class="subsector" id="SubS2" style="display: none;">
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Desayuno/helado.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">El arca</p>
+                    <p class="precio">$10.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Desayuno/Torredepanqueques.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Pancakes</p>
+                    <p class="precio">$10.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Desayuno/Pastelde10000calorias.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Pastel de 10.000 calorías</p>
+                    <p class="precio">$15.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Desayuno/Rosquillasycafé.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Rosquilla y café a elección</p>
+                    <p class="precio">$12.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Desayuno/ChocolateCaliente.jpeg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Chocolate Caliente</p>
+                    <p class="precio">$10.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Desayuno/perroscalientesdulces.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Perros Calientes Dulces</p>
+                    <p class="precio">$7.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Desayuno/Pretzel.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Pretzels</p>
+                    <p class="precio">$6.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Desayuno/ApplePie.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Pie de manzana</p>
+                    <p class="precio">$20.99</p>
+                </div>
+            </div>
+        </article>
+        <article class="sectorComidas" id="postres" style="width: 25%;">
+            <div class="tit">
+                <h2>Bebidas</h2>
+                <img src="./Img/flecha-hacia-abajo.png" alt="" id="FlCo3" class="flechaAbajo" onclick="poss.mostrar()">
+            </div>
+            <div class="subsector" id="SubS3" style="display: none;">
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Bebidas/Tehelado.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Té helado</p>
+                    <p class="precio">$21.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Bebidas/jugodecangrejo.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Jugo de cangrejo</p>
+                    <p class="precio">$2.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Bebidas/colainvisible.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Cola invisible</p>
+                    <p class="precio">$5.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Bebidas/Tonicorevitalizante.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Tónico Revitalizante Simpson e Hijo</p>
+                    <p class="precio">$3.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Bebidas/buzzcola.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Buzz Cola</p>
+                    <p class="precio">$9.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Bebidas/jugodecangrejo.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Jugo de cangrejo</p>
+                    <p class="precio">$4.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Bebidas/Duff.jpeg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Cerveza Duff</p>
+                    <p class="precio">$19.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Bebidas/AbsolutKrusty.jpeg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Absolut Krusty</p>
+                    <p class="precio">$49.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Bebidas/krustykola.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Krusty Kola</p>
+                    <p class="precio">$14.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Bebidas/prestameunsentimiento.jpeg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Prestame un sentimiento</p>
+                    <p class="precio">$10.99</p>
+                </div>
+                <div class="menuitem">
+                    <img src="./Img/FotosBar/Menu/Bebidas/Llamaradamoe.jpg" alt="" class="menuitemimg">
+                    <p class="menuitemdesc">Llamarada Moe</p>
+                    <p class="precio">$34.99</p>
+                </div>
+            </div>
+        </article>
+    </main>
+    <img class="logo" src="./Img/LogoMoe.png" alt="">
+    <iframe src="footer.html"></iframe>
+    <script src="./Acciones.js"></script>
+</body>
+
+
+</html>
