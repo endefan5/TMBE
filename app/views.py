@@ -1,8 +1,10 @@
 from flask import jsonify, request, redirect, url_for, render_template, app
 from app.models import Reserva, Usuario
 
+
 def index():
     return jsonify({'message': "Bienvenidos a la API de la Taberna de Moe"})
+
 
 def crear_usuario():
     usuario = request.form.get("usuario")
@@ -11,23 +13,28 @@ def crear_usuario():
     apellido = request.form.get("apellido")
     email = request.form.get("email")
     telefono = request.form.get("telefono")
-    nuevo_usuario = Usuario(None, usuario, clave, nombre, apellido, email, telefono)
+    nuevo_usuario = Usuario(None, usuario, clave, nombre,
+                            apellido, email, telefono)
     nuevo_usuario.guardar()
     # Redirigir a la página de reservas después de crear el usuario
     return redirect(url_for('reservas'))
 
+
 def reservas():
     return render_template('Reserva.html')
+
 
 def traer_usuarios():
     usuarios = Usuario.traer_todos()
     return jsonify([usuario.serialize() for usuario in usuarios])
+
 
 def traer_usuario(id):
     usuario = Usuario.traer_uno(id)
     if not usuario:
         return jsonify({'message': 'Usuario no encontrado'}), 404
     return jsonify(usuario.serialize())
+
 
 def actualizar_usuario(id):
     usuario = Usuario.traer_uno(id)
@@ -43,6 +50,7 @@ def actualizar_usuario(id):
     usuario.guardar()
     return jsonify({'message': 'Usuario actualizado.'})
 
+
 def eliminar_usuario(id):
     usuario = Usuario.traer_uno(id)
     if not usuario:
@@ -50,13 +58,14 @@ def eliminar_usuario(id):
     usuario.eliminar()
     return jsonify({'message': 'Usuario eliminado satisfactoriamente.'})
 
+
 def crear_reserva():
-    cantidadPersonas = request.form.get("cantidadPersonas")
+    cantidadPersonas = request.form.get("npersonas")
     fecha = request.form.get("fecha")
     ubicacion = request.form.get("ubicacion")
     ocasionEspecial = request.form.get("ocasionEspecial")
     ocasionEspecialCual = request.form.get("ocasionEspecialCual")
-    emailUsuario = request.form.get("emailUsuario")
+    emailUsuario = request.form.get("mailUsuario")
     telefonoUsuario = request.form.get("telefonoUsuario")
     nombreCompletoUsuario = request.form.get("nombreCompletoUsuario")
 
@@ -76,11 +85,14 @@ def crear_reserva():
 
     return jsonify({"message": "Reserva creada satisfactoriamente"}), 201
 
+
 def traer_reservas():
     reservas = Reserva.traer_todos()
     return jsonify([reserva.serialize() for reserva in reservas]), 200
 
-@app.route("/traer_reserva/<string:emailUsuario>", methods=["GET"])
+# @app.route("/traer_reserva/<string:emailUsuario>", methods=["GET"])
+
+
 def traer_reserva(emailUsuario):
     reserva = Reserva.traer_uno(emailUsuario)
     if not reserva:
@@ -114,6 +126,7 @@ def actualizar_reserva(emailUsuario):
     reserva.idUsuario = data['idUsuario']
     reserva.guardar()
     return jsonify({'message': 'Reserva actualizada.'})
+
 
 def eliminar_reserva(emailUsuario):
     reserva = Reserva.traer_uno(emailUsuario)

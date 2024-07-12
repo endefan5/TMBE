@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/Estilos/Estilos.css" rel="stylesheet">
+    <link href="Estilos/bootstrap.css" rel="stylesheet">
+    <link href="Estilos/Estilos.css" rel="stylesheet">
     <link href="../Img/favicon.ico" rel="icon">
     <title>Reservas</title>
     <style>
@@ -15,6 +16,7 @@
             justify-content: center;
             min-height: 80vh;
         }
+
         body {
             background-color: #359dd9;
             padding: 0;
@@ -61,12 +63,22 @@
             <div class="cuerpo">
                 <div>
                     <label>Fecha:</label>
-                    <input id="seleccionFechaReserva" type="datetime-local" class="form-control" name="message">
+                    <input id="seleccionFechaReserva" type="datetime-local" class="form-control" name="fecha">
                 </div>
                 <div>
                     <label>Cantidad de personas:</label>
                     <input type="number" class="form-control" name="npersonas" id="NumPersonas"
                         placeholder="Número de personas" min="1">
+                </div>
+                <div>
+                    <label>Mail usuario:</label>
+                    <input type="text" class="form-control" name="mailUsuario" id="NumPersonas"
+                        placeholder="Correo del usuario">
+                </div>
+                <div>
+                    <label>Mail usuario:</label>
+                    <input type="number" class="form-control" name="telefonoUsuario" id="NumPersonas"
+                        placeholder="Teléfono del usuario">
                 </div>
                 <div>
                     <label>Ubicación:</label>
@@ -82,11 +94,13 @@
                     <div class="secOcaEsp">
                         <div class="secOcaEspSi">
                             <label>Sí</label>
-                            <input id="radioSi" type="radio" name="Festejo" value="true" onclick="mostrar_festejos()">
+                            <input id="radioSi" type="radio" name="ocasionEspecial" value="true"
+                                onclick="mostrar_festejos()">
                         </div>
                         <div class="secOcaEspSi">
                             <label>No</label>
-                            <input id="radioNo" type="radio" name="Festejo" value="false" onclick="ocultar_festejos()">
+                            <input id="radioNo" type="radio" name="ocasionEspecial" value="false"
+                                onclick="ocultar_festejos()">
                         </div>
                     </div>
                 </div>
@@ -104,7 +118,7 @@
             </div>
         </form>
     </main>
-    <iframe src="footer.html"></iframe>
+    <iframe src="./footer.html"></iframe>
     <img src="../Img/LogoMoe.png" alt="">
     <img class="logo" src="./Img/LogoMoe.png" alt="">
     <script src="../Acciones.js"></script>
@@ -117,9 +131,9 @@
             const enviarBtn = document.getElementById('enviarReserva');
             const radioSi = document.getElementById('radioSi');
             const radioNo = document.getElementById('radioNo');
-    
+
             const eventoEspecial = "";  // Asignación correcta de eventoEspecial
-    
+
             // Clear fields on page load to ensure placeholders are respected
             const clearFields = () => {
                 numPersonas.value = '';
@@ -127,43 +141,43 @@
                 ubicacion.value = '';
                 seleccionFechaReserva.value = '';
             };
-    
+
             const checkFields = () => {
                 const allValid = numPersonas.value !== '' && seleccionFechaReserva.value !== '' && ubicacion.value !== '';
                 const radioNoChecked = radioNo.checked;
                 const radioSiChecked = radioSi.checked && festejos.value !== '';
-    
+
                 if (allValid && (radioNoChecked || radioSiChecked)) {
                     enviarBtn.style.display = 'block';
                 } else {
                     enviarBtn.style.display = 'none';
                 }
             };
-    
+
             numPersonas.addEventListener('input', checkFields);
             seleccionFechaReserva.addEventListener('input', checkFields);
             ubicacion.addEventListener('change', checkFields);
             radioSi.addEventListener('change', checkFields);
             radioNo.addEventListener('change', checkFields);
             festejos.addEventListener('change', checkFields);
-    
+
             // Hide the button initially and clear fields on page load
             enviarBtn.style.display = 'none';
             clearFields();
         });
-    
+
         function mostrar_festejos() {
             document.getElementById('festejos').style.display = 'block';
             checkFields();
         }
-    
+
         function ocultar_festejos() {
             document.getElementById('festejos').style.display = 'none';
             document.getElementById('festejos').value = '';
             checkFields();
         }
     </script>
-    
+
 </body>
 
 </html>
